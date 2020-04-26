@@ -54,7 +54,7 @@ class LocationViewController: UIViewController, UITableViewDataSource {
     }
     
     // Each cell accesses a different CoreData Object that represents a location
-    // Each location is accessed with adventurer=adventurers[indexPath.row]
+    // Each location is accessed with location=location[indexPath.row]
     // Properties of the location are accessed by doing property=location.value(forKeyPath: "something")
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: LocationTableViewCell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as! LocationTableViewCell
