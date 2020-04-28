@@ -10,6 +10,8 @@ class AddLocationViewController: UIViewController, CLLocationManagerDelegate{
         "x-rapidapi-key": "3a43991df0mshbe7306c836e529ep1528e5jsn3aab283719f4"
     ]
     
+    var statesDictionary = ["NM": "New Mexico", "SD": "South Dakota", "TN": "Tennessee", "VT": "Vermont", "WY": "Wyoming", "OR": "Oregon", "MI": "Michigan", "MS": "Mississippi", "WA": "Washington", "ID": "Idaho", "ND": "North Dakota", "GA": "Georgia", "UT": "Utah", "OH": "Ohio", "DE": "Delaware", "NC": "North Carolina", "NJ": "New Jersey", "IN": "Indiana", "IL": "Illinois", "HI": "Hawaii", "NH": "New Hampshire", "MO": "Missouri", "MD": "Maryland", "WV": "West Virginia", "MA": "Massachusetts", "IA": "Iowa", "KY": "Kentucky", "NE": "Nebraska", "SC": "South Carolina", "AZ": "Arizona", "KS": "Kansas", "NV": "Nevada", "WI": "Wisconsin", "RI": "Rhode Island", "FL": "Florida", "TX": "Texas", "AL": "Alabama", "CO": "Colorado", "AK": "Alaska", "VA": "Virginia", "AR": "Arkansas", "CA": "California", "LA": "Louisiana", "CT": "Connecticut", "NY": "New York", "MN": "Minnesota", "MT": "Montana", "OK": "Oklahoma", "PA": "Pennsylvania", "ME": "Maine"]
+    
     @IBOutlet weak var CountryField: UITextField!
     @IBOutlet weak var StateProvinceField: UITextField!
     @IBOutlet weak var CityField: UITextField!
@@ -56,7 +58,6 @@ class AddLocationViewController: UIViewController, CLLocationManagerDelegate{
             while( !stateprovinceFinishedLoading ){
                 continue
             }
-            print(stateprovince_names)
             if( !stateprovince_names.contains(_stateprovince) ){
                 ErrorLabel.text = "Region Name Not Valid"
                 return
@@ -67,7 +68,6 @@ class AddLocationViewController: UIViewController, CLLocationManagerDelegate{
             while( !cityFinishedLoading ){
                 continue
             }
-            print(city_names)
             if( !city_names.contains(_city) || _country != "USA" ){
                 ErrorLabel.text = "City Name Not Valid"
                 return
@@ -127,15 +127,30 @@ class AddLocationViewController: UIViewController, CLLocationManagerDelegate{
             print("Found user's location: \(_location)")
             location = _location
             location.fetchCityAndCountryAndStateprovince { city, country, stateprovince, error in
-                guard let city = city, let country = country, let stateprovince = stateprovince, error == nil else {
+                guard var city = city, var country = country, var stateprovince = stateprovince, error == nil else {
                     self.ErrorLabel.text = "There was an error finding location"
                     return
                 }
-                print(city,country)
+                print(city,stateprovince,country)
+                if( country == "US" ){
+                    country = "USA"
+                    if( stateprovince != "" && self.statesDictionary[stateprovince] != nil ){
+                        stateprovince = self.statesDictionary[stateprovince]!
+                    }
+                }
+                else{
+                    city = ""
+                }
+                if( city == "New York" ){
+                    city = "New York City"
+                }
                 self.ErrorLabel.text = ""
                 self.CountryField.text = country
                 self.CityField.text = city
                 self.StateProvinceField.text = stateprovince
+                city = ""
+                country = ""
+                stateprovince = ""
             }
         }
     }

@@ -115,23 +115,24 @@ class DataViewController: UIViewController{
                     return
                 }
                 if( jsonData.isEmpty ){
-                    self.errorHandler()
+                    self.finishedUpdating = true
+                    self.confirmedDeaths = 0
+                    self.confirmedCases = 0
+                    self.ErrorLabel.text = "Information Not Available. Pick a Different Date."
+                    self.CasesLabel.text = String(self.confirmedCases)
+                    self.DeathsLabel.text = String(self.confirmedDeaths)
                     return
                 }
                 guard let jsonData2 = jsonData[0] as? [String:Any] else{
                     return
                 }
-                print(jsonData2)
-                var covidData: [String:Any]
                 if( self.cityFlag ){
                     guard let regionData = jsonData2["region"] as? [String:Any] else{
                         return
                     }
-                    print(regionData)
                     guard let cityData = regionData["cities"] as? [Dictionary<String, Any>] else{
                         return
                     }
-                    print(cityData)
                     self.confirmedCases = cityData[0]["confirmed"] as! Int
                     self.confirmedDeaths = cityData[0]["deaths"] as! Int
                 }
@@ -164,15 +165,6 @@ class DataViewController: UIViewController{
     func updateNumbers() {
         CasesLabel.text = String(confirmedCases)
         DeathsLabel.text = String(confirmedDeaths)
-    }
-    
-    //HANDLES ERRORS
-    func errorHandler(){
-        finishedUpdating = true
-        confirmedDeaths = 0
-        confirmedCases = 0
-        ErrorLabel.text = "Information Not Available. Pick a Different Date."
-        updateNumbers()
     }
     
 }
