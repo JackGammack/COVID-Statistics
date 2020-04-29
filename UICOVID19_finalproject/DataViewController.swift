@@ -2,7 +2,7 @@ import UIKit
 import CoreData
 import Foundation
 
-class DataViewController: UIViewController{
+class DataViewController: UIViewController {
     
     let headers = [
         "x-rapidapi-host": "covid-19-statistics.p.rapidapi.com",
@@ -26,6 +26,11 @@ class DataViewController: UIViewController{
     var confirmedCases: Int = 0
     var confirmedDeaths: Int = 0
     
+    var WeeklyDeaths: [Int] = []
+    var WeeklyCases: [Int] = []
+    var MonthlyCases: [Int] = []
+    var MonthlyDeaths: [Int] = []
+
 
     @IBOutlet weak var CasesLabel: UILabel!
     @IBOutlet weak var LocationLabel: UILabel!
@@ -167,5 +172,191 @@ class DataViewController: UIViewController{
         DeathsLabel.text = String(confirmedDeaths)
     }
     
+    @IBAction func WeeklyGraphButton(_ sender: Any) {
+        for i in 0...6 {
+            confirmedCases = 0
+            confirmedDeaths = 0
+            ErrorLabel.text = ""
+            finishedUpdating = false
+            date = Date() - 604800 + (Double(i)*86400)
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let dateString = dateFormatter.string(from: date)
+            
+            var request_string = early_request_string + "&date=\(dateString)"
+            request_string = request_string.replacingOccurrences(of: " ", with: "%20")
+            let request = NSMutableURLRequest(url: NSURL(string: request_string)! as URL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
+            request.httpMethod = "GET"
+            request.allHTTPHeaderFields = headers
+
+            let session = URLSession.shared
+            let task = session.dataTask(with: request as URLRequest) { data, response, error in
+                if error != nil || data == nil {
+                    return
+                }
+
+                guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                    return
+                }
+                guard let mime = response.mimeType, mime == "application/json" else {
+                    return
+                }
+
+                do {
+                    guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] else{
+                        return
+                    }
+                    guard let jsonData = json["data"] as? [Dictionary<String, Any>] else{
+                        return
+                    }
+                    if( jsonData.isEmpty ){
+                        self.finishedUpdating = true
+                        self.confirmedDeaths = 0
+                        self.confirmedCases = 0
+                        self.ErrorLabel.text = "Information Not Available. Pick a Different Date."
+                        self.CasesLabel.text = String(self.confirmedCases)
+                        self.DeathsLabel.text = String(self.confirmedDeaths)
+                        return
+                    }
+                    guard let jsonData2 = jsonData[0] as? [String:Any] else{
+                        return
+                    }
+                    if( self.cityFlag ){
+                        guard let regionData = jsonData2["region"] as? [String:Any] else{
+                            return
+                        }
+                        guard let cityData = regionData["cities"] as? [Dictionary<String, Any>] else{
+                            return
+                        }
+                        self.confirmedCases = cityData[0]["confirmed"] as! Int
+                        self.confirmedDeaths = cityData[0]["deaths"] as! Int
+                    }
+                    else if( self.regionFlag ){
+                        self.confirmedCases = jsonData2["confirmed"] as! Int
+                        self.confirmedDeaths = jsonData2["deaths"] as! Int
+                    }
+                    else{
+                        for dict in jsonData{
+                            self.confirmedCases += dict["confirmed"] as! Int
+                            self.confirmedDeaths += dict["deaths"] as! Int
+                        }
+                        
+                    }
+                    
+                }
+                catch {
+                    print("JSON error: \(error.localizedDescription)")
+                    return
+                }
+                self.finishedUpdating = true
+            }
+            task.resume()
+            while( !finishedUpdating ){
+                continue
+            }
+            updateNumbers()
+            WeeklyDeaths.append(self.confirmedDeaths)
+            WeeklyCases.append(self.confirmedCases)
+            graphPointsDeaths = WeeklyDeaths
+            graphPointsCases = WeeklyCases
+        }
+    }
+    
+    
+    @IBAction func MonthlyGraphData(_ sender: Any) {
+        for i in 0...29 {
+            confirmedCases = 0
+            confirmedDeaths = 0
+            ErrorLabel.text = ""
+            finishedUpdating = false
+            date = Date() - 2592000 + (Double(i)*86400)
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let dateString = dateFormatter.string(from: date)
+            
+            var request_string = early_request_string + "&date=\(dateString)"
+            request_string = request_string.replacingOccurrences(of: " ", with: "%20")
+            let request = NSMutableURLRequest(url: NSURL(string: request_string)! as URL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
+            request.httpMethod = "GET"
+            request.allHTTPHeaderFields = headers
+
+            let session = URLSession.shared
+            let task = session.dataTask(with: request as URLRequest) { data, response, error in
+                if error != nil || data == nil {
+                    return
+                }
+
+                guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                    return
+                }
+                guard let mime = response.mimeType, mime == "application/json" else {
+                    return
+                }
+
+                do {
+                    guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] else{
+                        return
+                    }
+                    guard let jsonData = json["data"] as? [Dictionary<String, Any>] else{
+                        return
+                    }
+                    if( jsonData.isEmpty ){
+                        self.finishedUpdating = true
+                        self.confirmedDeaths = 0
+                        self.confirmedCases = 0
+                        self.ErrorLabel.text = "Information Not Available. Pick a Different Date."
+                        self.CasesLabel.text = String(self.confirmedCases)
+                        self.DeathsLabel.text = String(self.confirmedDeaths)
+                        return
+                    }
+                    guard let jsonData2 = jsonData[0] as? [String:Any] else{
+                        return
+                    }
+                    if( self.cityFlag ){
+                        guard let regionData = jsonData2["region"] as? [String:Any] else{
+                            return
+                        }
+                        guard let cityData = regionData["cities"] as? [Dictionary<String, Any>] else{
+                            return
+                        }
+                        self.confirmedCases = cityData[0]["confirmed"] as! Int
+                        self.confirmedDeaths = cityData[0]["deaths"] as! Int
+                    }
+                    else if( self.regionFlag ){
+                        self.confirmedCases = jsonData2["confirmed"] as! Int
+                        self.confirmedDeaths = jsonData2["deaths"] as! Int
+                    }
+                    else{
+                        for dict in jsonData{
+                            self.confirmedCases += dict["confirmed"] as! Int
+                            self.confirmedDeaths += dict["deaths"] as! Int
+                        }
+                        
+                    }
+                    
+                }
+                catch {
+                    print("JSON error: \(error.localizedDescription)")
+                    return
+                }
+                self.finishedUpdating = true
+            }
+            task.resume()
+            while( !finishedUpdating ){
+                continue
+            }
+            updateNumbers()
+            MonthlyDeaths.append(self.confirmedDeaths)
+            MonthlyCases.append(self.confirmedCases)
+            graphPointsDeaths = MonthlyDeaths
+            graphPointsCases = MonthlyCases
+            print(graphPointsDeaths)
+            print(graphPointsCases)
+        }
+    }
+    
+        
 }
     

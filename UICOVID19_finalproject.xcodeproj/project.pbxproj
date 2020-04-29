@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1439ACDC2458BC0C0075A3E1 /* GraphViewCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1439ACDB2458BC0C0075A3E1 /* GraphViewCases.swift */; };
+		1439AD01245903650075A3E1 /* GraphViewDeaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1439AD00245903650075A3E1 /* GraphViewDeaths.swift */; };
 		6F2A637B2437B30D00BBF66A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2A637A2437B30D00BBF66A /* AppDelegate.swift */; };
 		6F2A637D2437B30D00BBF66A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2A637C2437B30D00BBF66A /* SceneDelegate.swift */; };
 		6F2A63822437B30D00BBF66A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F2A63802437B30D00BBF66A /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1439ACDB2458BC0C0075A3E1 /* GraphViewCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewCases.swift; sourceTree = "<group>"; };
+		1439AD00245903650075A3E1 /* GraphViewDeaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewDeaths.swift; sourceTree = "<group>"; };
 		6F2A63772437B30D00BBF66A /* UICOVID19_finalproject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UICOVID19_finalproject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F2A637A2437B30D00BBF66A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6F2A637C2437B30D00BBF66A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +71,8 @@
 				6F8C1F8124533F63004DB5DD /* DataViewController.swift */,
 				6F2A63802437B30D00BBF66A /* Main.storyboard */,
 				6F8C1F8324534394004DB5DD /* AddLocationViewController.swift */,
+				1439ACDB2458BC0C0075A3E1 /* GraphViewCases.swift */,
+				1439AD00245903650075A3E1 /* GraphViewDeaths.swift */,
 				6F8C1F7F24533D4B004DB5DD /* LocationViewController.swift */,
 				6F2A63862437B31200BBF66A /* Assets.xcassets */,
 				6F2A63882437B31200BBF66A /* LaunchScreen.storyboard */,
@@ -149,9 +155,11 @@
 			files = (
 				6F2A637B2437B30D00BBF66A /* AppDelegate.swift in Sources */,
 				6FD569452453651700457E36 /* UICOVID19_finalproject.xcdatamodeld in Sources */,
+				1439ACDC2458BC0C0075A3E1 /* GraphViewCases.swift in Sources */,
 				6F8C1F8424534394004DB5DD /* AddLocationViewController.swift in Sources */,
 				6F8C1F8224533F63004DB5DD /* DataViewController.swift in Sources */,
 				6F2A637D2437B30D00BBF66A /* SceneDelegate.swift in Sources */,
+				1439AD01245903650075A3E1 /* GraphViewDeaths.swift in Sources */,
 				6F8C1F8024533D4B004DB5DD /* LocationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
