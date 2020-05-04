@@ -296,7 +296,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sPt-qv-Eix">
-                                <rect key="frame" x="20" y="554" width="374" height="51"/>
+                                <rect key="frame" x="20" y="811" width="374" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -319,10 +319,13 @@
                                 <state key="normal" title="View Last 30 Days Data Graph"/>
                                 <connections>
                                     <action selector="MonthlyGraphData:" destination="pBt-sr-pq5" eventType="touchUpInside" id="fB5-GG-v2G"/>
-                                    <action selector="WeeklyGraphButton:" destination="pBt-sr-pq5" eventType="touchUpInside" id="A90-9s-g9r"/>
                                     <segue destination="sdP-cQ-1Gf" kind="show" id="egi-DV-qOC"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ORs-dV-H2G">
+                                <rect key="frame" x="20" y="801" width="363" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="h4T-Gd-AnL"/>
@@ -334,6 +337,7 @@
                         <outlet property="DeathsLabel" destination="yTM-il-K1Z" id="7Zl-u8-ItG"/>
                         <outlet property="ErrorLabel" destination="sPt-qv-Eix" id="ngt-PW-hx2"/>
                         <outlet property="LocationLabel" destination="3uX-CY-SJ0" id="JgE-eB-mOH"/>
+                        <outlet property="ProgressBar" destination="ORs-dV-H2G" id="WQb-Ab-Nyb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BiB-7K-oeR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -350,22 +354,10 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lbf-HZ-nqZ" customClass="GraphViewCases" customModule="UICOVID19_finalproject" customModuleProvider="target">
                                 <rect key="frame" x="20" y="149.5" width="374" height="291"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFU-kY-XjS">
-                                        <rect key="frame" x="20" y="34" width="334" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="UFU-kY-XjS" secondAttribute="bottom" constant="236" id="4n2-lW-cyo"/>
-                                    <constraint firstAttribute="width" constant="374" id="DfH-ps-Vkc"/>
-                                    <constraint firstItem="UFU-kY-XjS" firstAttribute="leading" secondItem="lbf-HZ-nqZ" secondAttribute="leading" constant="20" id="I6t-MW-pir"/>
-                                    <constraint firstItem="UFU-kY-XjS" firstAttribute="top" secondItem="lbf-HZ-nqZ" secondAttribute="top" constant="34" id="ro3-jQ-Q7M"/>
-                                    <constraint firstAttribute="height" constant="291" id="s6d-sF-gcU"/>
-                                    <constraint firstAttribute="trailing" secondItem="UFU-kY-XjS" secondAttribute="trailing" constant="20" id="xOi-5S-W82"/>
+                                    <constraint firstAttribute="height" constant="291" id="8Cb-JC-Fzy"/>
+                                    <constraint firstAttribute="width" constant="374" id="FWM-Zy-SEj"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="startColor">
@@ -375,28 +367,13 @@
                                         <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="recentCases" destination="UFU-kY-XjS" id="ErT-xx-WNz"/>
-                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PVT-ry-wQs" customClass="GraphViewDeaths" customModule="UICOVID19_finalproject" customModuleProvider="target">
                                 <rect key="frame" x="20" y="504.5" width="374" height="291"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAz-Ky-uaV">
-                                        <rect key="frame" x="8" y="32" width="358" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="IAz-Ky-uaV" firstAttribute="top" secondItem="PVT-ry-wQs" secondAttribute="top" constant="32" id="Bb6-CU-lc3"/>
-                                    <constraint firstAttribute="height" constant="291" id="E2l-ib-D2y"/>
-                                    <constraint firstAttribute="bottom" secondItem="IAz-Ky-uaV" secondAttribute="bottom" constant="238" id="I3v-Ms-cm1"/>
-                                    <constraint firstItem="IAz-Ky-uaV" firstAttribute="leading" secondItem="PVT-ry-wQs" secondAttribute="leading" constant="20" id="Pnd-l6-6E9"/>
-                                    <constraint firstAttribute="trailing" secondItem="IAz-Ky-uaV" secondAttribute="trailing" constant="20" id="SX6-2T-2dv"/>
-                                    <constraint firstAttribute="width" constant="374" id="hPu-tx-A5c"/>
+                                    <constraint firstAttribute="height" constant="291" id="Kl8-Xv-eA9"/>
+                                    <constraint firstAttribute="width" constant="374" id="sY2-6w-QGJ"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="startColor">
@@ -406,18 +383,15 @@
                                         <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="recentDeaths" destination="IAz-Ky-uaV" id="X4G-OO-5Ua"/>
-                                </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Cases" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hf4-be-DA8">
-                                <rect key="frame" x="20" y="120" width="374" height="21"/>
+                                <rect key="frame" x="20" y="120" width="374" height="26.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Deaths" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVL-S4-kxl">
-                                <rect key="frame" x="20" y="475" width="374" height="21"/>
+                                <rect key="frame" x="20" y="469.5" width="374" height="26.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -425,17 +399,17 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="PVT-ry-wQs" firstAttribute="centerX" secondItem="u12-Y4-jjX" secondAttribute="centerX" id="6fL-p2-Vxx"/>
-                            <constraint firstItem="PVT-ry-wQs" firstAttribute="centerY" secondItem="u12-Y4-jjX" secondAttribute="centerY" constant="175" id="CQx-6p-Q1J"/>
-                            <constraint firstItem="lbf-HZ-nqZ" firstAttribute="centerX" secondItem="u12-Y4-jjX" secondAttribute="centerX" id="GyY-73-mcg"/>
                             <constraint firstItem="hf4-be-DA8" firstAttribute="leading" secondItem="u12-Y4-jjX" secondAttribute="leading" constant="20" id="IJb-C7-Ujc"/>
-                            <constraint firstItem="JVL-S4-kxl" firstAttribute="leading" secondItem="u12-Y4-jjX" secondAttribute="leading" constant="20" id="JB6-1K-AkC"/>
                             <constraint firstItem="hf4-be-DA8" firstAttribute="top" secondItem="u12-Y4-jjX" secondAttribute="top" constant="32" id="LOf-tA-Tss"/>
-                            <constraint firstItem="u12-Y4-jjX" firstAttribute="trailing" secondItem="JVL-S4-kxl" secondAttribute="trailing" constant="20" id="T8F-hl-AMC"/>
-                            <constraint firstItem="JVL-S4-kxl" firstAttribute="top" secondItem="lbf-HZ-nqZ" secondAttribute="bottom" constant="34.5" id="ax3-yS-NWf"/>
-                            <constraint firstItem="lbf-HZ-nqZ" firstAttribute="centerY" secondItem="u12-Y4-jjX" secondAttribute="centerY" constant="-180" id="fNd-fr-vYe"/>
-                            <constraint firstItem="PVT-ry-wQs" firstAttribute="top" secondItem="JVL-S4-kxl" secondAttribute="bottom" constant="8.5" id="kFu-Ve-cvd"/>
-                            <constraint firstItem="lbf-HZ-nqZ" firstAttribute="top" secondItem="hf4-be-DA8" secondAttribute="bottom" constant="8.5" id="lLy-QW-dIa"/>
+                            <constraint firstItem="PVT-ry-wQs" firstAttribute="top" secondItem="JVL-S4-kxl" secondAttribute="bottom" constant="8.5" id="NSu-ji-I04"/>
+                            <constraint firstItem="JVL-S4-kxl" firstAttribute="top" secondItem="lbf-HZ-nqZ" secondAttribute="bottom" constant="29" id="Q4w-QZ-kqa"/>
+                            <constraint firstItem="u12-Y4-jjX" firstAttribute="trailing" secondItem="PVT-ry-wQs" secondAttribute="trailing" constant="20" id="XEr-gV-8Rh"/>
+                            <constraint firstItem="lbf-HZ-nqZ" firstAttribute="leading" secondItem="u12-Y4-jjX" secondAttribute="leading" constant="20" id="aQ6-jt-1sv"/>
+                            <constraint firstItem="u12-Y4-jjX" firstAttribute="trailing" secondItem="JVL-S4-kxl" secondAttribute="trailing" constant="20" id="bpQ-4n-1dZ"/>
+                            <constraint firstItem="lbf-HZ-nqZ" firstAttribute="top" secondItem="hf4-be-DA8" secondAttribute="bottom" constant="3" id="oXa-up-Gte"/>
+                            <constraint firstItem="u12-Y4-jjX" firstAttribute="trailing" secondItem="lbf-HZ-nqZ" secondAttribute="trailing" constant="20" id="oXr-yG-eMx"/>
+                            <constraint firstItem="JVL-S4-kxl" firstAttribute="leading" secondItem="u12-Y4-jjX" secondAttribute="leading" constant="20" id="qGk-BZ-ib9"/>
+                            <constraint firstItem="PVT-ry-wQs" firstAttribute="leading" secondItem="u12-Y4-jjX" secondAttribute="leading" constant="20" id="xoE-w7-LgH"/>
                             <constraint firstItem="u12-Y4-jjX" firstAttribute="trailing" secondItem="hf4-be-DA8" secondAttribute="trailing" constant="20" id="yIW-Hm-tWY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="u12-Y4-jjX"/>

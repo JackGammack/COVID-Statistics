@@ -12,11 +12,6 @@ var graphPointsCases: [Int] = [0,1,2,3,4]
 
 @IBDesignable class GraphViewCases: UIView {
     
-    @IBOutlet weak var recentCases: UILabel!
-//    recentCases.text = graphPointsCases.last.map({ (Int) -> String in
-//        return String(Int)
-//    })
-
     private struct Constants {
       static let cornerRadiusSize = CGSize(width: 8.0, height: 8.0)
       static let margin: CGFloat = 20.0

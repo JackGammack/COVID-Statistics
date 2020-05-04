@@ -11,9 +11,7 @@ import UIKit
 var graphPointsDeaths: [Int] = [0,1,2,3,4,5,6,7,8,9,10]
 
 @IBDesignable class GraphViewDeaths: UIView {
-    
-    @IBOutlet weak var recentDeaths: UILabel!
-    
+        
         private struct Constants {
           static let cornerRadiusSize = CGSize(width: 8.0, height: 8.0)
           static let margin: CGFloat = 20.0
@@ -29,6 +27,8 @@ var graphPointsDeaths: [Int] = [0,1,2,3,4,5,6,7,8,9,10]
         override func draw(_ rect: CGRect) {
             let width = rect.width
             let height = rect.height
+        
+        
             
         let path = UIBezierPath(roundedRect: rect,
                               byRoundingCorners: .allCorners,
@@ -147,9 +147,6 @@ var graphPointsDeaths: [Int] = [0,1,2,3,4,5,6,7,8,9,10]
             linePath.lineWidth = 1.0
             linePath.stroke()
             
-//            recentDeaths.text = graphPointsDeaths.last.map({ (Int) -> String in
-//                return String(Int)
-//            })
             
         }
         
