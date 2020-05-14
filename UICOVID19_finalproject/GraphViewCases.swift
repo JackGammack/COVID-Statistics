@@ -10,6 +10,7 @@ import UIKit
 
 var graphPointsCases: [Int] = [0,1,2,3,4]
 
+
 @IBDesignable class GraphViewCases: UIView {
     
     private struct Constants {
@@ -20,6 +21,8 @@ var graphPointsCases: [Int] = [0,1,2,3,4]
       static let colorAlpha: CGFloat = 0.3
       static let circleDiameter: CGFloat = 5.0
     }
+    
+    
     
     @IBInspectable var startColor: UIColor = .blue
     @IBInspectable var endColor: UIColor = .green

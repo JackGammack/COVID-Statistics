@@ -2,6 +2,7 @@ import UIKit
 import CoreData
 import Foundation
 
+
 class DataViewController: UIViewController {
     
     let headers = [
@@ -206,6 +207,14 @@ class DataViewController: UIViewController {
                 dateFormatter.dateFormat = "yyyy-MM-dd"
                 let dateString = dateFormatter.string(from: date)
                 
+                let xAxisFormatter = DateFormatter()
+                xAxisFormatter.locale = Locale(identifier: "en_US_POSIX")
+                xAxisFormatter.dateFormat = "MM/dd"
+                let xAxisString = xAxisFormatter.string(from: date)
+            
+                casesArrayX.append(xAxisString)
+
+                
                 var request_string = early_request_string + "&date=\(dateString)"
                 request_string = request_string.replacingOccurrences(of: " ", with: "%20")
                 let request = NSMutableURLRequest(url: NSURL(string: request_string)! as URL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
@@ -282,6 +291,7 @@ class DataViewController: UIViewController {
                 WeeklyCases.append(self.confirmedCases)
 
             }
+            
             graphPointsDeaths = WeeklyDeaths
             graphPointsCases = WeeklyCases
         }
@@ -299,6 +309,7 @@ class DataViewController: UIViewController {
             MonthlyCases.removeAll()
             graphPointsDeaths.removeAll()
             graphPointsCases.removeAll()
+            casesArrayX.removeAll()
             WeeklyPressed = false
             for i in 0...29 {
                 //updateProgress()
@@ -311,6 +322,17 @@ class DataViewController: UIViewController {
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                 dateFormatter.dateFormat = "yyyy-MM-dd"
                 let dateString = dateFormatter.string(from: date)
+                
+                if (i % 5 == 0 || i == 0 || i == 29){
+                    let xAxisFormatter = DateFormatter()
+                    xAxisFormatter.locale = Locale(identifier: "en_US_POSIX")
+                    xAxisFormatter.dateFormat = "MM/dd"
+                    let xAxisString = xAxisFormatter.string(from: date)
+                
+                    casesArrayX.append(xAxisString)
+                }
+                
+                
                 
                 var request_string = early_request_string + "&date=\(dateString)"
                 request_string = request_string.replacingOccurrences(of: " ", with: "%20")
