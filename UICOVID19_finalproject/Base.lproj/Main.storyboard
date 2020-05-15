@@ -322,10 +322,6 @@
                                     <segue destination="sdP-cQ-1Gf" kind="show" id="egi-DV-qOC"/>
                                 </connections>
                             </button>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ORs-dV-H2G">
-                                <rect key="frame" x="20" y="801" width="363" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="h4T-Gd-AnL"/>
@@ -337,7 +333,6 @@
                         <outlet property="DeathsLabel" destination="yTM-il-K1Z" id="7Zl-u8-ItG"/>
                         <outlet property="ErrorLabel" destination="sPt-qv-Eix" id="ngt-PW-hx2"/>
                         <outlet property="LocationLabel" destination="3uX-CY-SJ0" id="JgE-eB-mOH"/>
-                        <outlet property="ProgressBar" destination="ORs-dV-H2G" id="WQb-Ab-Nyb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BiB-7K-oeR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
