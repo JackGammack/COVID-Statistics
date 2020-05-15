@@ -33,15 +33,12 @@ class DataViewController: UIViewController {
     var MonthlyDeaths: [Int] = []
     var WeeklyPressed = false
     var MonthlyPressed = false
-    let progress = Progress(totalUnitCount: 0)
-
 
     @IBOutlet weak var CasesLabel: UILabel!
     @IBOutlet weak var LocationLabel: UILabel!
     @IBOutlet weak var DeathsLabel: UILabel!
     @IBOutlet weak var DatePickerField: UIDatePicker!
     @IBOutlet weak var ErrorLabel: UILabel!
-    @IBOutlet weak var ProgressBar: UIProgressView!
     
     //DETERMINES WHICH FIELDS WERE POPULATED AND CREATES REQUEST STRING
     //BASED ON THEM
@@ -178,12 +175,6 @@ class DataViewController: UIViewController {
         DeathsLabel.text = String(confirmedDeaths)
     }
     
-    func updateProgress() {
-        self.progress.completedUnitCount += 1
-        print(self.progress.completedUnitCount)
-        self.ProgressBar.setProgress(Float(self.progress.fractionCompleted), animated: true)
-    }
-    
     @IBAction func WeeklyGraphButton(_ sender: Any) {
 //        let progress = Progress(totalUnitCount: 7)
 //        self.ProgressBar.progress = 0.0;
@@ -300,9 +291,6 @@ class DataViewController: UIViewController {
     
     
     @IBAction func MonthlyGraphData(_ sender: Any) {
-//        let progress = Progress(totalUnitCount: 30)
-//        self.ProgressBar.progress = 0.0;
-//        progress.completedUnitCount = 0;
         if MonthlyPressed == false {
             MonthlyPressed = true
             MonthlyDeaths.removeAll()
@@ -312,7 +300,6 @@ class DataViewController: UIViewController {
             casesArrayX.removeAll()
             WeeklyPressed = false
             for i in 0...29 {
-                //updateProgress()
                 confirmedCases = 0
                 confirmedDeaths = 0
                 ErrorLabel.text = ""
